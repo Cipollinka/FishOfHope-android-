@@ -79,7 +79,7 @@ android {
 
     namespace "com.fishofhope"
     defaultConfig {
-        applicationId "com.fishofhope"
+        applicationId "com.fishof.hopeapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
