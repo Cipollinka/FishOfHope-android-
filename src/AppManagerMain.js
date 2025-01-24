@@ -142,7 +142,7 @@ export default function AppManagerMain({navigation}) {
     setTimeout(() => setDoubleClick(false), 400);
   };
 
-  const [isInit, setInit] = React.useState(false);
+  const [isInit, setInit] = React.useState(true);
   const [isLoadingPage, setLoadingPage] = useState(true);
   const [isInvisibleLoader, setInvisibleLoader] = useState(false);
 

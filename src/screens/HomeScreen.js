@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  Share,
   ScrollView,
   Alert,
   SafeAreaView,
@@ -13,7 +12,7 @@ import {
 
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import Share from 'react-native-share';
 
 import SavedScreen from './SavedScreen';
 import RecommendationsScreen from './RecommendationsScreen';
@@ -270,11 +269,11 @@ const HomeScreen = () => {
         Alert.alert('Error', 'No fact here');
         return;
       }
-      await Share.share({
+      await Share.open({
         message: `My today fact is '${todayFact.pollutionTitle}'`,
-      });
+      })
     } catch (error) {
-      console.error('Error fact:', error);
+      // console.error('Error fact:', error);
     }
   };
 
@@ -284,11 +283,11 @@ const HomeScreen = () => {
         Alert.alert('Error', 'No recomendation here');
         return;
       }
-      await Share.share({
+      await Share.open({
         message: `My today recomendation is '${todayRecomendation.recomendationTitle}'`,
       });
     } catch (error) {
-      console.error('Error recomendation:', error);
+      // console.error('Error recomendation:', error);
     }
   };
 

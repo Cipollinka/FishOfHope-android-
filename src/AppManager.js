@@ -15,7 +15,7 @@ import LoadingWindow from './LoadingWindow';
 
 export default function AppManager() {
   const viewLoader = <LoadingWindow/>;
-  const viewGame = <FishOfHopeStack />
+  const viewGame = <FishOfHopeStack />;
   const appManagerStack = <AppManagerStack />;
 
   const [isLoadingScreen, setLoadingScreen] = useState(true);
@@ -270,7 +270,7 @@ export default function AppManager() {
   }, []);
 
   function renderView() {
-    return isLoadingScreen ? viewLoader : isGameOpen ? viewGame() : appManagerStack;
+    return isLoadingScreen ? viewLoader : isGameOpen ? viewGame : appManagerStack;
   }
 
   return renderView();

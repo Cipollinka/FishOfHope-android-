@@ -1,10 +1,8 @@
-import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaView, Share, Alert } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaView,  Alert } from 'react-native'
+import React, { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ArrowUpOnSquareIcon } from 'react-native-heroicons/solid';
-import { styled } from 'nativewind';
 import { ScrollView } from 'react-native-gesture-handler';
-
+import Share from 'react-native-share'
 const fontMontserratRegular = 'Montserrat-Regular';
 const fontMontserratSemiBold = 'Montserrat-SemiBold';
 
@@ -17,11 +15,11 @@ const SavedScreen = ({ selectedPage, savedRecomendations, savedFacts, setSavedRe
                 Alert.alert('Error', 'No fact here');
                 return;
             }
-            await Share.share({
+            await Share.open({
                 message: `My saved fact is '${factTitle}'`,
             });
         } catch (error) {
-            console.error('Error fact:', error);
+            // console.error('Error fact:', error);
         }
     };
 
@@ -31,11 +29,11 @@ const SavedScreen = ({ selectedPage, savedRecomendations, savedFacts, setSavedRe
                 Alert.alert('Error', 'No recomendation here');
                 return;
             }
-            await Share.share({
+            await Share.open({
                 message: `My saved recomendation is '${recTitle}'`,
             });
         } catch (error) {
-            console.error('Error recomendation:', error);
+            // console.error('Error recomendation:', error);
         }
     };
 

@@ -1,7 +1,7 @@
-import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaView, Share, Alert } from 'react-native';
+import { View, Text, Image, Dimensions, StyleSheet, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import React, { useEffect, useMemo, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { styled } from 'nativewind';
+import Share from 'react-native-share';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const fontMontserratRegular = 'Montserrat-Regular';
@@ -15,11 +15,11 @@ const RecommendationsScreen = ({ selectedPage, savedRecomendations, setSavedReco
                 Alert.alert('Error', 'No recomendation here');
                 return;
             }
-            await Share.share({
+            await Share.open({
                 message: `Do you know about '${recTitle}'? No? Join FishOfHope and learn more about it!`,
             });
         } catch (error) {
-            console.error('Error recomendation:', error);
+            // console.error('Error recomendation:', error);
         }
     };
 

@@ -7,15 +7,12 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DeviceInfo from 'react-native-device-info';
 import { TailwindProvider } from 'tailwind-rn';
-import OnboardingScreen from './src/screens/OnboardingScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import utilities from './tailwind.json';
 import { Provider, useDispatch } from 'react-redux';
 import HomeScreen from './src/screens/HomeScreen';
 import { UserProvider, UserContext } from './src/context/UserContext';
 import store from './src/redux/store';
-import OnboardingScreen2 from './src/screens/OnboardingScreen2';
-import OnboardingScreen3 from './src/screens/OnboardingScreen3';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,7 +44,7 @@ const AppNavigator = () => {
     const checkIsNewDayNow = async () => {
       const previousDayStr = await AsyncStorage.getItem('prevDay');
       const lastprevDay = await AsyncStorage.getItem('todayDay');
-      const currentDay = format(new Date(), 'yyyy-MM-dd'); 
+      const currentDay = format(new Date(), 'yyyy-MM-dd');
       if (previousDayStr !== currentDay) {
         let newTodayDay = lastprevDay ? (parseInt(lastprevDay) % 23) + 1 : 1;
         await AsyncStorage.setItem('prevDay', currentDay);
@@ -56,13 +53,13 @@ const AppNavigator = () => {
       } else if (lastprevDay) {
         setTodayDay(parseInt(lastprevDay));
       }
-  
-      setInitializingApp(false); 
+
+      setInitializingApp(false);
     };
-  
+
     checkIsNewDayNow();
-  }, []); 
-  
+  }, []);
+
   useEffect(() => {
     dispatch(loadUserData());
   }, [dispatch]);
@@ -96,10 +93,10 @@ const AppNavigator = () => {
   if (initializingApp) {
     return (
       <View style={{
-        backgroundColor: '#3991F5',  
-        alignItems: 'center',  
-        justifyContent: 'center', 
-        flex: 1, 
+        backgroundColor: '#3991F5',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
         }}>
         <ActivityIndicator size="large" color="white" />
       </View>
@@ -110,9 +107,6 @@ const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName={onbVisible ? 'OnboardingScreen' : 'Home'}>
         <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="OnboardingScreen2" component={OnboardingScreen2} options={{ headerShown: false }} />
-        <Stack.Screen name="OnboardingScreen3" component={OnboardingScreen3} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
